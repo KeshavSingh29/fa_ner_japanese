@@ -2,8 +2,8 @@
 Create a conda virtual environment and activate it:
 
 ```bash
-conda create --name <env_name> python=3.10
-conda activate <env_name>
+conda create --name ner_fa python=3.10
+conda activate ner_fa
 pip install -r requirements.txt
 export PYTHONPATH="$PWD"
 ```
