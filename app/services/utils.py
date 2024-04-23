@@ -113,14 +113,16 @@ def save_dataset(data_features) -> None:
     """
     Save dataset to disk
     """
-    data_features.save_to_disk(f"{dir_path}/ner_partition_data")
+    if not os.path.isdir(f"{dir_path}/ner_partition_data"):
+        logger.info("Saving Training, Val and Test Data to Disk")
+        data_features.save_to_disk(f"{dir_path}/ner_partition_data")
 
 
-def inference(data_piece, inference_model, tokenizer) -> list:
+def inference(data_piece: str, inference_model, tokenizer) -> list:
     """
-    Returns raw ids of predicted class, you may need to map them to correct label using id_label dict
+    Returns tags of predicted class for tokenized text, you will need to use 'token_aggregator' to correctly map it to text spans
     """
-    inputs = tokenizer(data_piece['text'], return_tensors="pt")
+    inputs = tokenizer(data_piece, return_tensors="pt")
     with torch.no_grad():
         logits = inference_model(**inputs).logits[0]
     pred = np.argmax(logits.detach().numpy(), axis=-1)
@@ -138,7 +140,7 @@ def process_data2tags(test_data, train_model, inference_model, tokenizer):
         token_class = [train_model.config.id2label[t] for t in labels]
         y_true.append(token_class)
     # get predicted labels
-        y_pred.append(inference(data_piece=unit, inference_model=inference_model, tokenizer=tokenizer))
+        y_pred.append(inference(data_piece=unit['text'], inference_model=inference_model, tokenizer=tokenizer))
     return y_pred, y_true
 
 def token_aggregator(tokens: list[str],labels: list[str]) -> list[dict]:
