@@ -6,7 +6,8 @@ from transformers import (
     AutoModelForTokenClassification, 
     TrainingArguments, 
     Trainer, 
-    set_seed
+    set_seed,
+    EarlyStoppingCallback
 )
 from services.utils import (
     dir_path, 
@@ -90,7 +91,8 @@ def main():
         args=training_args,
         data_collator=data_collator,
         train_dataset=train_val_test_split["train"],
-        eval_dataset=train_val_test_split["val"]
+        eval_dataset=train_val_test_split["val"],
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=3)]
         )
 
     logger.info("--------START MODEL TRAINING---------")
