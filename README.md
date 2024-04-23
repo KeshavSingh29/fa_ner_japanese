@@ -5,6 +5,7 @@ Create a conda virtual environment and activate it:
 conda create --name <env_name> python=3.10
 conda activate <env_name>
 pip install -r requirements.txt
+export PYTHONPATH="$PWD"
 ```
 
 Run Streamlit App (if you have model weights, else train model first)
