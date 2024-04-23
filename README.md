@@ -18,5 +18,4 @@ If you wish to train the NER model
 python3 app/services/model.py
 ```
 
-Have any issues? 
-Please feel free to contact me. 
+Have any issues? Please feel free to contact me.
