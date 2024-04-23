@@ -9,7 +9,7 @@ from transformers import (
     set_seed,
     EarlyStoppingCallback
 )
-from services.utils import (
+from app.services.utils import (
     dir_path, 
     file_downloader, 
     create_label_id, 
@@ -112,7 +112,6 @@ def main():
 
     # Save Result
     save_result(result_dict=result)
-
 
 
 if __name__ == "__main__":

@@ -9,8 +9,11 @@ from app.services.utils import inference, token_aggregator
 # Load best Model
 st.info("Loading model...")
 tokenizer = AutoTokenizer.from_pretrained("tohoku-nlp/bert-base-japanese-v3")
-inference_model = AutoModelForTokenClassification.from_pretrained("app/ner_model")
-st.success("Model loaded successfully!")
+try:
+    inference_model = AutoModelForTokenClassification.from_pretrained("ner_model")
+    st.success("Model loaded successfully!")
+except Exception as e:
+    st.warning("Model not found, please download the weights or train the model first")
 
 entity_colors = {
     '政治的組織名': "red",
@@ -49,8 +52,9 @@ if st.button("Extract NER Tags"):
     raw_labels = inference(data_piece=sentence, inference_model=inference_model, tokenizer=tokenizer)
     raw_tokens = tokenizer.tokenize(sentence)
     result = token_aggregator(tokens=raw_tokens, labels=raw_labels)
+    only_entities = [x for x in result if x['tag'] != "O"]
     annotated_html = annotate_text(*result)
 
     # Display results
-    st.write("Named Entities Found:")
+    st.write(f"Named Entities Found: {len(only_entities)}")
     st.markdown(annotated_html, unsafe_allow_html=True)

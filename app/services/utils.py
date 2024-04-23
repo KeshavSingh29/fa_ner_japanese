@@ -7,7 +7,6 @@ import warnings
 import requests
 import evaluate
 import unicodedata
-import pandas as pd
 import numpy as np
 from tqdm import tqdm
 from datasets import Dataset, DatasetDict
@@ -184,7 +183,7 @@ def convert_int64_to_int(obj):
     return obj
 
 def save_result(result_dict: dict):
-    with open("result.txt", "w") as file:
+    with open("result_test.txt", "w") as file:
         json.dump(result_dict, file, indent=4, ensure_ascii=False, default=convert_int64_to_int)
 
 if __name__ == "__main__":
