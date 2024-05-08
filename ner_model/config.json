@@ -1,0 +1,47 @@
+{
+  "_name_or_path": "ner_model",
+  "architectures": [
+    "BertForTokenClassification"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "classifier_dropout": null,
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "\u653f\u6cbb\u7684\u7d44\u7e54\u540d",
+    "1": "\u5730\u540d",
+    "2": "O",
+    "3": "\u30a4\u30d9\u30f3\u30c8\u540d",
+    "4": "\u305d\u306e\u4ed6\u306e\u7d44\u7e54\u540d",
+    "5": "\u6cd5\u4eba\u540d",
+    "6": "\u65bd\u8a2d\u540d",
+    "7": "\u88fd\u54c1\u540d",
+    "8": "\u4eba\u540d"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "label2id": {
+    "O": 2,
+    "\u305d\u306e\u4ed6\u306e\u7d44\u7e54\u540d": 4,
+    "\u30a4\u30d9\u30f3\u30c8\u540d": 3,
+    "\u4eba\u540d": 8,
+    "\u5730\u540d": 1,
+    "\u653f\u6cbb\u7684\u7d44\u7e54\u540d": 0,
+    "\u65bd\u8a2d\u540d": 6,
+    "\u6cd5\u4eba\u540d": 5,
+    "\u88fd\u54c1\u540d": 7
+  },
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "position_embedding_type": "absolute",
+  "torch_dtype": "float32",
+  "transformers_version": "4.32.0",
+  "type_vocab_size": 2,
+  "use_cache": true,
+  "vocab_size": 32768
+}
